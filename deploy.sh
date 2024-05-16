@@ -14,10 +14,7 @@ else
     exit 1
 fi
 
-
-
 REPO_URL=$PROD_REPO
-
 
 # Tag the Docker image with repository URL and version tag
 docker tag image_capstone:$VERSION_TAG $PROD_REPO:$VERSION_TAG
