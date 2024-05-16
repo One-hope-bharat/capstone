@@ -27,5 +27,5 @@ fi
 echo "$DOCKERHUB_CREDENTIALS_PSW" | docker login -u "$DOCKERHUB_CREDENTIALS_USR" --password-stdin
 
 # Push the tagged Docker image to the Docker Hub repository
-docker push $REPO_URL:$VERSION_TAG
+docker push $PROD_REPO:$VERSION_TAG
 
