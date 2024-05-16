@@ -16,11 +16,11 @@ fi
 
 
 
-REPO_URL=$PROD_REPO
+REPO_URL=$DEV_REPO
 
 
 # Tag the Docker image with repository URL and version tag
-docker tag image_capstone:$VERSION_TAG $PROD_REPO:$VERSION_TAG
+docker tag image_capstone:$VERSION_TAG $DEV_REPO:$VERSION_TAG
 
 # Authenticate Docker Hub login (ensure Docker Hub credentials are set as secrets)
 if [[ -z "$DOCKERHUB_CREDENTIALS_USR" || -z "$DOCKERHUB_CREDENTIALS_PSW" ]]; then
@@ -31,7 +31,7 @@ fi
 echo "$DOCKERHUB_CREDENTIALS_PSW" | docker login -u "$DOCKERHUB_CREDENTIALS_USR" --password-stdin
 
 # Push the tagged Docker image to the Docker Hub repository
-docker push $PROD_REPO:$VERSION_TAG
+docker push $DEV_REPO:$VERSION_TAG
 
 
 
