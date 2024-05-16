@@ -14,6 +14,7 @@ else
     exit 1
 fi
 
+REPO_URL=$PROD_REPO
 
 # Tag the Docker image with repository URL and version tag
 docker tag image_capstone:$VERSION_TAG $PROD_REPO:$VERSION_TAG
@@ -29,4 +30,4 @@ echo "$DOCKERHUB_CREDENTIALS_PSW" | docker login -u "$DOCKERHUB_CREDENTIALS_USR"
 # Push the tagged Docker image to the Docker Hub repository
 docker push $PROD_REPO:$VERSION_TAG
 
-##
+######
