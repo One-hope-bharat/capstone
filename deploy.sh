@@ -16,7 +16,7 @@ fi
 
 
 # Tag the Docker image with repository URL and version tag
-docker tag image_capstone:$VERSION_TAG $REPO_URL:$VERSION_TAG
+docker tag image_capstone:$VERSION_TAG $PROD_REPO:$VERSION_TAG
 
 # Authenticate Docker Hub login (ensure Docker Hub credentials are set as secrets)
 if [[ -z "$DOCKERHUB_CREDENTIALS_USR" || -z "$DOCKERHUB_CREDENTIALS_PSW" ]]; then
