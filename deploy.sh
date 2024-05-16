@@ -14,18 +14,7 @@ else
     exit 1
 fi
 
-# Determine the current Git branch
-CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-
-# Tag the Docker image based on the branch
-if [[ "$CURRENT_BRANCH" == "main" ]]; then
-    REPO_URL=$PROD_REPO
-elif [[ "$CURRENT_BRANCH" == "dev" ]]; then
-    REPO_URL=$DEV_REPO
-else
-    echo "Unsupported branch for deployment: $CURRENT_BRANCH"
-    exit 1
-fi
+REPO_URL=$PROD_REPO
 
 # Tag the Docker image with repository URL and version tag
 docker tag image_capstone:$VERSION_TAG $REPO_URL:$VERSION_TAG
@@ -41,4 +30,4 @@ echo "$DOCKERHUB_CREDENTIALS_PSW" | docker login -u "$DOCKERHUB_CREDENTIALS_USR"
 # Push the tagged Docker image to the Docker Hub repository
 docker push $REPO_URL:$VERSION_TAG
 
-##
+###
