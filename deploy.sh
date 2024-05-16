@@ -29,3 +29,4 @@ echo "$DOCKERHUB_CREDENTIALS_PSW" | docker login -u "$DOCKERHUB_CREDENTIALS_USR"
 # Push the tagged Docker image to the Docker Hub repository
 docker push $PROD_REPO:$VERSION_TAG
 
+#
