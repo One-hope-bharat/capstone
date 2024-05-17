@@ -12,7 +12,7 @@ else
     echo "Error: version.txt not found"
     exit 1
 fi
-ssh -i "$SSH_KEY" "$SSH_USER@$EC2_HOST" "$SSH_COMMAND"
+ssh -T "$SSH_KEY" "$SSH_USER@$EC2_HOST" "$SSH_COMMAND"
 
 SSH_COMMAND="docker pull $PROD_REPO:$VERSION_TAG && \
              docker stop capstone_container || true && \
