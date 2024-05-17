@@ -18,7 +18,3 @@ SSH_COMMAND="docker pull $PROD_REPO:$VERSION_TAG && \
              docker stop capstone_container || true && \
              docker rm capstone_container || true && \
              docker run -d --name capstone_container -p 80:80 $PROD_REPO:$VERSION_TAG"
-
-
-
-
