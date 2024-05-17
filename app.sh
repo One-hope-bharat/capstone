@@ -2,8 +2,8 @@
 set -e
 
 PROD_REPO="1hopebharat/capstone_prod"
-EC2_HOST="54.218.80.37"
-SSH_KEY="/keypair/capstone_web_oregon.pem"
+EC2_HOST="172.31.23.97"
+SSH_KEY="/home/ubuntu/keypair/capstone_web_oregon.pem"
 SSH_USER="ec2-user"
 
 if [[ -f "version.txt" ]]; then
