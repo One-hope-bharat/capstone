@@ -1,10 +1,19 @@
 #!/bin/bash
-
 set -e
 
-# SSH into EC2 instance and run Docker commands
-ssh -i /home/ec2-user/keypair/capstone_web_oregon.pem  ec2-user@54.218.80.37 << EOF
-docker pull 1hopebharat/capstone_prod:$VERSION_TAG
-docker run -itd -name capstone_V$VERSION_TAG -p "80:80" 1hopebharat/capstone_prod:$VERSION_TAG
-EOF
+
+PROD_REPO="1hopebharat/capstone_prod"
+
+if [[ -f "version.txt" ]]; then
+    VERSION_TAG=$(cat version.txt)
+else
+    echo "Error: version.txt not found"
+    exit 1
+fi
+
+docker pull $PROD_REPO:$VERSION_TAG
+
+docker stop capstone_container || true && docker rm capstone_container || true
+
+docker run -itd --name capstone_container -p 80:80 $PROD_REPO:$VERSION_TAG
 
