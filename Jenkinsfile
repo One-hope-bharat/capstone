@@ -1,10 +1,3 @@
-def remote = [:]
-remote.name = "node-1"
-remote.host = "ec2-54-185-10-226.us-west-2.compute.amazonaws.com"
-remote.allowAnyHosts = true
-remote.user = "ubuntu"
-remote.identityFile = "~/ore_keypain.pem"
-
 pipeline {
     agent any
     environment {
@@ -25,7 +18,10 @@ pipeline {
         }
 	stage('deploy to EC2 '){
 		steps{
-			sshCommand remote: remote, command: "ls -lrt"
+			sshagent(['54.185.10.226']) {
+				sh 'ls -lrt'
+			}
+			//sshCommand remote: remote, command: "ls -lrt"
                 //sh './app.sh'
             }
         }
