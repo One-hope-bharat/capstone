@@ -18,11 +18,12 @@ pipeline {
         }
 	stage('deploy to EC2 '){
 		steps{
-			sshagent(['54.185.10.226','docker-pull']){
+			sshagent(['54.185.10.226']){
 				sh 'scp ./app.sh ubuntu@54.185.10.226:/home/ubuntu/'
 				sh 'scp ./version.txt ubuntu@54.185.10.226:/home/ubuntu/'
-				sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 54.185.10.226 ./app.sh'
-				sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 54.185.10.226 echo "$DOCKERHUB_CREDENTIALS_PSW" | docker login -u "$DOCKERHUB_CREDENTIALS_USR" --password-stdin'
+				//sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 54.185.10.226 ./app.sh'
+				//sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 54.185.10.226 echo "$DOCKERHUB_CREDENTIALS_PSW" | docker login -u "$DOCKERHUB_CREDENTIALS_USR" --password-stdin'
+				sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 54.185.10.226 DOCKERHUB_CREDENTIALS_PSW="dckr_pat_2AnrPAxeh1ve5_drjmxeME54jG8" DOCKERHUB_CREDENTIALS_USR="1hopebharat" ./app.sh'
 			}
 		
             }
