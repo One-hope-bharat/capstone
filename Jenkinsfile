@@ -18,8 +18,7 @@ pipeline {
         }
 		stage('deploy to EC2 '){
 			steps{
-				withCredentials([file(credentialsId: 'capstone.pivate', variable: 'WEBSERVER')])
-				sh 'ssh -i $WEBSERVER ec2-user@172.31.23.97' 
+				sh 'ssh -i "ore_keypain.pem" ubuntu@ec2-54-185-10-226.us-west-2.compute.amazonaws.com' 
                 sh './app.sh'
             }
         }
