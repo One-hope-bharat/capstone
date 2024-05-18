@@ -18,7 +18,7 @@ pipeline {
         }
 		stage('deploy to EC2 '){
 			steps{
-				sh 'ssh -i /home/ubuntu/ore_keypain.pem ubuntu@ec2-54-185-10-226.us-west-2.compute.amazonaws.com' 
+				sh 'ssh -i ~/.ssh/ore_keypain.pem ubuntu@ec2-54-185-10-226.us-west-2.compute.amazonaws.com' 
                 sh './app.sh'
             }
         }
