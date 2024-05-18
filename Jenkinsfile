@@ -22,12 +22,9 @@ pipeline {
 				sh 'scp ./app.sh ubuntu@54.185.10.226:/home/ubuntu/'
 				sh 'scp ./version.txt ubuntu@54.185.10.226:/home/ubuntu/'
 				sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 54.185.10.226 ./app.sh'
-				sh '''
-    				ssh -o StrictHostKeyChecking=no ubuntu@54.185.10.226 << 'EOF'
-				echo "$DOCKERHUB_CREDENTIALS_PSW" | docker login -u "$DOCKERHUB_CREDENTIALS_USR" --password-stdin
-    				EOF
-				'''
+	
 			}
+			sh 'echo "$DOCKERHUB_CREDENTIALS_PSW" | docker login -u "$DOCKERHUB_CREDENTIALS_USR" --password-stdin'
             }
         }
     }
