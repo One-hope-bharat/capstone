@@ -19,6 +19,7 @@ pipeline {
 	stage('deploy to EC2 '){
 		steps{
 			sshagent(['54.185.10.226']) {
+				sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 54.185.10.226 whoami'
 				sh 'ls -lrt'
 			}
 			//sshCommand remote: remote, command: "ls -lrt"
