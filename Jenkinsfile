@@ -20,6 +20,7 @@ pipeline {
 		steps{
 			sshagent(['54.185.10.226']) {
 				sh 'scp ./app.sh ubuntu@54.185.10.226:/home/ubuntu/'
+				sh 'scp ./version.txt ubuntu@54.185.10.226:/home/ubuntu/'
 				sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 54.185.10.226 ./app.sh'
 			}
 			//sshCommand remote: remote, command: "ls -lrt"
