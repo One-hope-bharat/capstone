@@ -18,7 +18,7 @@ pipeline {
         }
 	stage('deploy to EC2 '){
 		steps{
-			sshagent(['54.185.10.226','DH-Cred']){
+			sshagent(['54.185.10.226','docker-pull']){
 				sh 'scp ./app.sh ubuntu@54.185.10.226:/home/ubuntu/'
 				sh 'scp ./version.txt ubuntu@54.185.10.226:/home/ubuntu/'
 				sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 54.185.10.226 ./app.sh'
